@@ -20,10 +20,10 @@ import com.mangofactory.swagger.plugin.EnableSwagger;
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration  // Sprint Boot Auto Configuration
-@ComponentScan(basePackages = "com.webservice")
+//@ComponentScan(basePackages = "com.webservice")
 //@EnableJpaRepositories("com.tw.repository") // To segregate MongoDB and JPA repositories. Otherwise not needed.
 @EnableSwagger // auto generation of API docs
-//@PropertySource({"classpath:application.properties", "classpath:message.properties"})
+//@PropertySource({"classpath:application.properties"})
 public class App extends SpringBootServletInitializer
 {
     public static void main(String[] args) throws UnknownHostException {
