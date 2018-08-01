@@ -1,13 +1,15 @@
 package com.webservice.repo;
 
+
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.webservice.model.UserModelInfo;
+import com.webservice.model.User;
 
 @Repository
-public interface UserModelInfoRepo extends JpaRepository<UserModelInfo,Integer>{
+public interface UserModelInfoRepo extends JpaRepository<User,Integer>{
 
-	UserModelInfo findByPhoneNumber(String phone);
+	User findByPhoneNumber(String phone);
 
 }

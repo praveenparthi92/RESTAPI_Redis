@@ -5,17 +5,19 @@ import com.webservice.dto.TransactionDto;
 import com.webservice.dto.UsermodelinfoDto;
 import com.webservice.model.UserTransactionModel;
 import com.webservice.model.CreditDetailModel;
-import com.webservice.model.UserModelInfo;
+import com.webservice.model.User;
 
 public class DtoToModelConversion {
 
-	public UserModelInfo userModelInfoToDto(UsermodelinfoDto usermodelinfoDto) {
-		UserModelInfo userModelInfo = new UserModelInfo();
+	public User userModelInfoToDto(UsermodelinfoDto usermodelinfoDto) {
+		User userModelInfo = new User();
 		if(usermodelinfoDto.getId()!=null){
 			userModelInfo.setId(usermodelinfoDto.getId());
 		}
+		userModelInfo.setPassword(usermodelinfoDto.getPassword());
+		userModelInfo.setUsername(usermodelinfoDto.getUsername());
 		userModelInfo.setPhoneNumber(usermodelinfoDto.getPhoneNumber());
-		userModelInfo.setTokenValue(usermodelinfoDto.getTokenValue());
+		//userModelInfo.setTokenValue(usermodelinfoDto.getTokenValue());
 		return userModelInfo;
 	}
 	
@@ -40,7 +42,6 @@ public class DtoToModelConversion {
 		}
 		creditDetailModel.setCreditAmount(creditDetailModelDto.getCreditAmount());
 		creditDetailModel.setPhoneNum(creditDetailModelDto.getPhoneNum());
-		creditDetailModel.setUserModelForCredit(creditDetailModelDto.getUserModelForCredit());
 		return creditDetailModel;
 	}
 }

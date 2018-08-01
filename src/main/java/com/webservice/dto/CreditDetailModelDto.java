@@ -1,13 +1,13 @@
 package com.webservice.dto;
 
-import com.webservice.model.UserModelInfo;
+import com.webservice.model.User;
 
 public class CreditDetailModelDto {
 
 	private Integer id;
 	private String phoneNum;
 	private Double creditAmount;
-	private UserModelInfo userModelForCredit;
+	private User userModelForCredit;
 	public Integer getId() {
 		return id;
 	}
@@ -26,10 +26,10 @@ public class CreditDetailModelDto {
 	public void setCreditAmount(Double creditAmount) {
 		this.creditAmount = creditAmount;
 	}
-	public UserModelInfo getUserModelForCredit() {
+	public User getUserModelForCredit() {
 		return userModelForCredit;
 	}
-	public void setUserModelForCredit(UserModelInfo userModelForCredit) {
+	public void setUserModelForCredit(User userModelForCredit) {
 		this.userModelForCredit = userModelForCredit;
 	}
 	

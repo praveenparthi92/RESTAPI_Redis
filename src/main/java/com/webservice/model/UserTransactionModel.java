@@ -10,9 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
 
-@Component
 @Entity
 @Table(name="transaction")
 public class UserTransactionModel {
@@ -28,7 +26,7 @@ public class UserTransactionModel {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	private UserModelInfo userModelForTrans;
+	private User userModelForTrans;
 	
 	
 	public Integer getId() {

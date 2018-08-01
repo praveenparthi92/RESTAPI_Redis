@@ -7,7 +7,7 @@ import com.webservice.common.DtoToModelConversion;
 import com.webservice.common.ModelToDtoConversion;
 import com.webservice.dao.LoginDao;
 import com.webservice.dto.UsermodelinfoDto;
-import com.webservice.model.UserModelInfo;
+import com.webservice.model.User;
 import com.webservice.service.LoginService;
 
 
@@ -19,7 +19,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public UsermodelinfoDto getUserInfo(String phone) {
-		UserModelInfo userModelInfo =  loginDao.getUserInfo(phone);
+		User userModelInfo =  loginDao.getUserInfo(phone);
 		if(userModelInfo != null) {
 			ModelToDtoConversion modelToDtoConversion = new ModelToDtoConversion();
 			UsermodelinfoDto usermodelinfoDto = modelToDtoConversion.UserModelInfoToDto(userModelInfo);
@@ -33,8 +33,8 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public boolean saveUserInfp(UsermodelinfoDto usermodelinfodto) {
 		DtoToModelConversion dtoToModelConversion = new DtoToModelConversion(); 
-		UserModelInfo userModelInfo = dtoToModelConversion.userModelInfoToDto(usermodelinfodto);
-		UserModelInfo userModel= loginDao.saveUserInfo(userModelInfo);
+		User userModelInfo = dtoToModelConversion.userModelInfoToDto(usermodelinfodto);
+		User userModel= loginDao.saveUserInfo(userModelInfo);
 		if(userModel != null){
 			return true;
 		}else{

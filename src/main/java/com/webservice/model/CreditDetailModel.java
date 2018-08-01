@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-@Component
 @Entity
 @Table(name="credit_detail")
 public class CreditDetailModel {
@@ -21,9 +20,6 @@ public class CreditDetailModel {
 	private String phoneNum;
 	private Double creditAmount;
 	
-	@OneToOne
-	@JoinColumn(name="admin_id")
-	private UserModelInfo userModelForCredit;
 
 	public Integer getId() {
 		return id;
@@ -49,13 +45,5 @@ public class CreditDetailModel {
 		this.creditAmount = creditAmount;
 	}
 
-	public UserModelInfo getUserModelForCredit() {
-		return userModelForCredit;
-	}
-
-	public void setUserModelForCredit(UserModelInfo userModelForCredit) {
-		this.userModelForCredit = userModelForCredit;
-	}
-	
 		
 }
