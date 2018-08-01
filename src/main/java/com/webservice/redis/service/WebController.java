@@ -22,7 +22,7 @@ public class WebController {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/save")
 	public String save(@RequestBody CreditAmountLimit amountLimit) {
 		// save a single Customer
 		customerRepository.save(new CreditAmountLimit(amountLimit.getMobileNo(), amountLimit.getCreditAmountLimit()));

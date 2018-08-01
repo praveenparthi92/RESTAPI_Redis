@@ -13,7 +13,6 @@ import com.google.gson.Gson;
 import com.webservice.common.StatusResponseDTO;
 import com.webservice.dto.CreditDetailModelDto;
 import com.webservice.dto.TransactionDto;
-import com.webservice.dto.UsermodelinfoDto;
 import com.webservice.service.UserTransactionService;
 
 

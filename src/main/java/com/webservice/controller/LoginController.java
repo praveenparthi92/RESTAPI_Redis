@@ -1,8 +1,5 @@
 package com.webservice.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,13 +16,14 @@ import com.webservice.dto.UsermodelinfoDto;
 import com.webservice.service.LoginService;
 
 @RestController
-//@CrossOrigin
+@CrossOrigin
+
 public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
 	
-	//@CrossOrigin
+	@CrossOrigin
 	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = { "application/json" })
 	public ResponseEntity<String> saveUserInfo(@RequestBody UsermodelinfoDto usermodelinfodto) {
 		StatusResponseDTO statusResponseDTO = new StatusResponseDTO();
@@ -50,7 +48,7 @@ public class LoginController {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/getUserInfo", method = RequestMethod.POST, produces = { "application/json" })
-	public ResponseEntity<String> getUserInfoByPhone(@RequestBody UsermodelinfoDto usermodelinfodto,HttpServletRequest request,HttpServletResponse response,HttpSession session) {
+	public ResponseEntity<String> getUserInfoByPhone(@RequestBody UsermodelinfoDto usermodelinfodto) {
 		UsermodelinfoDto usermodelinfoDto = loginService.getUserInfo(usermodelinfodto.getPhoneNumber());
 		return new ResponseEntity<String>(new Gson().toJson(usermodelinfoDto), HttpStatus.OK);
 	}

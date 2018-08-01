@@ -16,11 +16,11 @@ import com.webservice.redis.model.CreditAmountLimit;
 public class CustomerRepositoryImpl implements CustomerRepository {
 
 	private static final String KEY = "User";
-
+	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
 	private HashOperations<String, Long, CreditAmountLimit> hashOperations;
 
-	@Autowired
+	
 	public CustomerRepositoryImpl(RedisTemplate<String, Object> redisTemplate) {
 		this.redisTemplate = redisTemplate;
 	}
