@@ -9,5 +9,5 @@ import com.webservice.model.UserTransactionModel;
 @Repository
 public interface CreditDetailRepo extends JpaRepository<CreditDetailModel,Integer>{
 	
-
+	CreditDetailModel findByPhoneNum(String phone);
 }

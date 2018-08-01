@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.webservice.common.StatusResponseDTO;
+import com.webservice.dto.CreditDetailModelDto;
 import com.webservice.dto.UsermodelinfoDto;
+import com.webservice.redis.model.CreditAmountLimit;
+import com.webservice.redis.service.WebController;
 import com.webservice.service.LoginService;
+import com.webservice.service.UserTransactionService;
 
 @RestController
 @CrossOrigin
@@ -22,6 +26,11 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
+	@Autowired
+	WebController webController;
+	
+	@Autowired 
+	UserTransactionService userTransactionService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = { "application/json" })
@@ -33,6 +42,13 @@ public class LoginController {
 			if(isSave){
 				statusResponseDTO.setStatus("Success");
 				statusResponseDTO.setMessage("Record Saved Successfully");
+				CreditDetailModelDto creditDetailModelDto = new CreditDetailModelDto();
+				creditDetailModelDto.setPhoneNum(usermodelinfodto.getPhoneNumber());
+				userTransactionService.saveCreditDetail(creditDetailModelDto);
+				
+				CreditAmountLimit amountLimit = new CreditAmountLimit(Long.valueOf(usermodelinfodto.getPhoneNumber()), 5000);
+				webController.save(amountLimit);
+				System.out.println("Saved successfully in Redis");
 			}else{
 				statusResponseDTO.setStatus("Failure");
 				statusResponseDTO.setMessage("Failed To Saved Record");
@@ -42,6 +58,7 @@ public class LoginController {
 			statusResponseDTO.setStatus("Already");
 			statusResponseDTO.setMessage("Record Already Exist");
 		}
+		
 		return null;
 		
 	}

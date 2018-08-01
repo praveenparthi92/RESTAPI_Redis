@@ -20,9 +20,14 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public UsermodelinfoDto getUserInfo(String phone) {
 		UserModelInfo userModelInfo =  loginDao.getUserInfo(phone);
-		ModelToDtoConversion modelToDtoConversion = new ModelToDtoConversion();
-		UsermodelinfoDto usermodelinfoDto = modelToDtoConversion.UserModelInfoToDto(userModelInfo);
-		return usermodelinfoDto;
+		if(userModelInfo != null) {
+			ModelToDtoConversion modelToDtoConversion = new ModelToDtoConversion();
+			UsermodelinfoDto usermodelinfoDto = modelToDtoConversion.UserModelInfoToDto(userModelInfo);
+			return usermodelinfoDto;
+		}else {
+			return null;
+		}
+		
 	}
 
 	@Override

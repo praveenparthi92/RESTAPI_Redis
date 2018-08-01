@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 import com.webservice.common.StatusResponseDTO;
 import com.webservice.dto.CreditDetailModelDto;
 import com.webservice.dto.TransactionDto;
+import com.webservice.redis.model.CreditAmountLimit;
+import com.webservice.redis.service.WebController;
 import com.webservice.service.UserTransactionService;
 
 
@@ -22,7 +24,8 @@ public class TransactionController {
 
 	@Autowired
 	UserTransactionService userTransactionService;
-	
+	@Autowired
+	WebController webController;
 	@CrossOrigin
 	@RequestMapping(value = "/saveTransaction", method = RequestMethod.POST, produces = { "application/json" })
 	public ResponseEntity<String> saveUserInfo(@RequestBody TransactionDto transactionDto) {
@@ -47,6 +50,8 @@ public class TransactionController {
 			if(isSave){
 				statusResponseDTO.setStatus("Success");
 				statusResponseDTO.setMessage("Record Saved Successfully");
+				CreditAmountLimit amountLimit = new CreditAmountLimit(Long.valueOf(creditDetailModelDto.getPhoneNum()), creditDetailModelDto.getCreditAmount().intValue());
+				webController.postCustomer(amountLimit);
 			}else{
 				statusResponseDTO.setStatus("Failure");
 				statusResponseDTO.setMessage("Failed To Saved Record");
