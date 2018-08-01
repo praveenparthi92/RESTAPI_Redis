@@ -40,9 +40,15 @@ public class UserTransactionServiceImpl implements UserTransactionService{
 	@Override
 	public boolean saveCreditDetail(CreditDetailModelDto creditDetailModelDto) {
 		CreditDetailModel creditDetail = null;
+		Double dbAmount = 0.0;
 		CreditDetailModel creditDetailModelList = creditDetailRepo.findByPhoneNum(creditDetailModelDto.getPhoneNum());
 		if(creditDetailModelList!=null) {
-			Double dbAmount = creditDetailModelList.getCreditAmount();
+			if(creditDetailModelList.getCreditAmount()==null || creditDetailModelList.getCreditAmount()==0) {
+				dbAmount = 0.0;
+			}else {
+				dbAmount = creditDetailModelList.getCreditAmount();	
+			}
+			
 			Double totalAmount = dbAmount+creditDetailModelDto.getCreditAmount();
 			creditDetailModelList.setCreditAmount(totalAmount);
 			creditDetail = userTransactionDao.saveCreditDetail(creditDetailModelList);
